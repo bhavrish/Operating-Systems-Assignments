@@ -1,0 +1,59 @@
+1. Each algorithm definition
+
+FCFS- First Come First Serve (FCFS) is a disk scheduling algorithm that schedules requests
+in a queue manner. Essentially, requests that come first in the original (unsorted) list
+of requests are executed first. A pro about FCFS is that it is very straightforward to implement;
+a con is that it is super inefficient.
+
+SSTF- Shortest Seek Time First (SSTF) is a disk scheduling algorithm that first involves
+having to sort the original list of requests. Once this list is sorted, SSTF selects the
+request with the shortest seek time from the current head position (head starts at starting
+position). One pro is that this algorithm is the most efficient out of all the other algorithms;
+a con is that SSTF can often lead to starvation (some requests need to wait a long time
+before they are finally processed).
+
+SCAN- SCAN is a disk scheduling algorithm that also involves a sorted list of requests. It 
+works by starting at the starting position and then moving all the way towards 1 end. Once it
+reaches the end, it starts moving back to the other end. During this process, SCAN executes
+requests along the way. This algorithm is also called the elevator algorithm because its
+mechanism resembles that of an elevator. One pro helps resolve the starvation issue that is
+prevalent in the SSTF algorithm; one con is that SCAN is not an efficient algorithm
+for unevenly distributed requests. For example, if majority of the requests are on the right side,
+and SCAN services the left side first, this can lead to unnecessarily long waiting times for
+majority of the requests.
+
+C-SCAN- C-SCAN is a variation of SCAN that involves moving all the way to 1 end. Subsequently,
+the algorithm returns back to the other end of the disk and then moving back up to the starting
+position. One pro is that this algorithm is a lot better for serving unevenly distributed requests;
+one con is that this algorithm is a little bit inefficient since after we reach one end of the disk, 
+this algorithm goes all the way back to the other end without servicing any requests along the way
+(lot of unnecessary head movement).
+
+LOOK- LOOK is a disk scheduling algorithm that also involves a sorted list of requests. LOOK
+is a more efficient version of C-SCAN. It traverses up till the largest request in the list 
+(instesd of the end of the disk) and then traverses down till the smallest request in the list,
+servicing requests along the way. Such a mechanism helps solve the problem of unnecessary movement
+which was an issue in C-SCAN.
+__________________________________________________________________________________________________
+2. The result (total amount of head movement) for each one algorithm
+
+For starting position of 500:
+FCFS- 3331118 (5th place)
+SSTF- 14735 (1st place)
+SCAN- 15223 (3rd place)
+C-SCAN- 19995 (4th place)
+LOOK- 14768 (2nd place)
+
+__________________________________________________________________________________________________
+3. Which algorithm is the most efficient one? Why?
+
+According to a couple of different values I tested for the starting position, the most efficient 
+algorithm has been SSTF even though LOOK has been close behind. SSTF being the most efficient
+algorithm makes sense for a couple of reasons. Firstly, SSTF minimizes the amount of head movement
+since it chooses the closest request (distance-wise) each iteration. Additionally SSTF reaches the
+lowest and highest request in the request list, but never goes all the way to the end of the disk.
+SCAN and C-SCAN had a lot of extra movement by going to the end of the disk which is not necessary
+majority of the time. That being said, while SSTF is the most efficient algorithm overall, there are
+situations where other algorithms may be preferred. For example, SSTF can often lead to starvation of
+requests; if minimizing starvation is a huge priority in the system reqs, then another algorithm such
+as SCAN may be preferred.

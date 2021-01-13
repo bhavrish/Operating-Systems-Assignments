@@ -1,0 +1,30 @@
+1. How long it took your app to finish the job when using 1 thread?
+
+My program took 0.006478 seconds to finish when using 1 thread. I believe my program would have
+ran it bit faster if I did not utilize a mutex. However it was necessary for me to utilize a mutex
+when I ran multiple threads because each thread was modifying the currThread global variable,
+and I wanted to ensure that only 1 thread can modify this variable at a time.
+__________________________________________________________________________________________________
+2. How many threads your machine can run simultaneously?
+
+I have a Macbook Air 2017 which has an Intel i5 processor which is dual-core. Despite being dual-core, 
+the i5 processor supports an additional 2 extra "virtual cores" due to hyper-threading. As such, my 
+machine can run a total of 4 threads.
+__________________________________________________________________________________________________
+3. How long it took your app to finish the job when using all available threads?
+
+Oddly enough, my app took longer to finish the job when using all available threads. Specifically,
+it took 0.011507 seconds. I believe this can be attributed to the program being pretty simple 
+computationally so creating more threads was not 100% necessary and actually slowed down the overall
+time. I'd imagine that for more complex programs, multithreading would save more time- a program would 
+need to be complex enough where the time saved by multithreading exceeds the time taken to create 
+additional threads.
+__________________________________________________________________________________________________
+4. Did you use task or data parallelization for this program? Why?
+
+For this program, I utilized data parallelization since I was essentially distributing the data
+across different threads. In other words, I was executing the same portion of code (numOfDivisors())
+for each thread, however the data this code was running on was different per thread. Task 
+parallelization, on the other hand, is when each thread runs a different function. Once again, since I 
+was running the same function but only changing the data being utilized per thread, this would be data
+parallelization.

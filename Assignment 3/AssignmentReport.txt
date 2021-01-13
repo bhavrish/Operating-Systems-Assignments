@@ -1,0 +1,30 @@
+
+1. What type of lock your code is using?
+My program is using a pthread_mutex_lock. This is the default mutex provided by the Pthread
+library. I chose to use a mutex as opposed to a semaphore because pthread's mutex made it very
+seamless to set up thread synchronization, so it seemed like a good choice to use in my program.
+__________________________________________________________________________________________________
+2. How many threads does your program created? Are there equal number of North and South
+threads?
+My Macbook Air can support up to 4 threads running in parallel. Assuming my program utilized all 4
+threads, the thread distribution amongst North and South could either be 1 North thread + 3 South
+threads,
+1 South thread + 3 North threads, or 2 North threads and 2 South threads. For this assignment, I
+chose
+to go with the first option; however I structured my program in a way where any of the
+aforemntioned
+thread distribution options would work.
+Essentially, lines 53-56 in my program create threads for both Northern farmers and Southern
+farmers
+up till the minimum number of threads between North and South. In a 3-1 or 1-3 distribution, this
+for
+loop would create 1 North and 1 South thread. In a 2-2 distribution, this for loop would create 2
+threads
+for both North and South. Subsequently, on lines 58-67, I checked to see if there were any excess
+threads left over, and created them using another loop. For example, in a 3 North- 1 South
+distribution,
+after lines 53-56, 2 more North threads need to be created, so the second for loop would take care
+of that.
+In a 2-2 distribution, the program would never enter the loops in line 58-67 since the number of
+North threads
+equals the number of South threads.
